@@ -1,0 +1,6 @@
+data/
+src/config.py
+*.pyc
+.DS_Store
+.env
+.idea
