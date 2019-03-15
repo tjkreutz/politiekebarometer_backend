@@ -1,4 +1,5 @@
 import json
+import lzma
 import datetime
 from xml.etree.ElementTree import parse
 
@@ -6,7 +7,7 @@ def jsonl_iterator(fp):
     """
     Iterator for tweets in jsonl format.
     """
-    with open(fp) as file:
+    with lzma.open(fp, mode='rt') as file:
         for line in file:
             yield json.loads(line)
 

@@ -7,6 +7,7 @@ def get_database():
         user=config.USER,
         password=config.PASSWORD,
         db=config.DB,
+        port=config.PORT,
         use_unicode=True,
         charset="utf8")
     return database

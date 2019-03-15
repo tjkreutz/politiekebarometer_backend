@@ -28,7 +28,7 @@ def main(fps):
     db = database.get_database()
     cur = db.cursor()
 
-    themes = functions.load_themes('data/20140718_dutchdictionary_v2.lcd.txt')
+    themes = functions.load_themes('20140718_dutchdictionary_v2.lcd.txt')
 
     #todo make one
     pol_parties = database.dbitems_from_table(cur, 'pol_parties')
