@@ -44,13 +44,13 @@ class DBItem:
         placeholder_string = ",".join(["%s"]*len(columns))
         return f"INSERT INTO {self.table} ({column_string}) VALUES ({placeholder_string});"
 
-def commit_news_mention(cur, insert):
-    doc, news, fragment, mention = insert
+def commit_mention(cur, insert):
+    doc, subdoc, fragment, mention = insert
 
     if not doc.is_committed():
         doc.commit(cur)
-        news.data['doc_id'] = doc.data['id']
-        news.commit(cur)
+        subdoc.data['doc_id'] = doc.data['id']
+        subdoc.commit(cur)
     if doc.is_committed() and not fragment.is_committed():
         fragment.data['doc_id'] = doc.data['id']
         fragment.commit(cur)
