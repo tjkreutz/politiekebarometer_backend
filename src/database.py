@@ -14,7 +14,7 @@ def get_database():
 
 def dbitems_from_table(cur, table):
     dbitems = []
-    sql = f"SELECT * FROM {table}"
+    sql = "SELECT * FROM {}".format(table)
     cur.execute(sql)
     columns = [d[0] for d in cur.description]
     for result in cur.fetchall():
@@ -42,13 +42,14 @@ class DBItem:
         columns = self.data.keys()
         column_string = ",".join(columns)
         placeholder_string = ",".join(["%s"]*len(columns))
-        return f"INSERT INTO {self.table} ({column_string}) VALUES ({placeholder_string});"
+        return "INSERT INTO {} ({}) VALUES ({});".format(self.table, column_string, placeholder_string)
 
 def commit_mention(cur, insert):
     doc, subdoc, fragment, mention = insert
 
     if not doc.is_committed():
         doc.commit(cur)
+    if doc.is_committed() and not subdoc.is_committed():
         subdoc.data['doc_id'] = doc.data['id']
         subdoc.commit(cur)
     if doc.is_committed() and not fragment.is_committed():
