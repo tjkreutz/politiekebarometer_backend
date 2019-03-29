@@ -1,3 +1,4 @@
+import os
 import sys
 from nltk.tokenize import sent_tokenize
 
@@ -5,13 +6,15 @@ from src import nlp
 from src import database
 from src import functions
 
+dirname = os.path.dirname(__file__)
 FLEMISH = ['De Standaard', 'Het Nieuwsblad', 'Gazet van Antwerpen', 'Het Belang van Limburg', 'De Morgen', 'Het Laatste Nieuws', 'De Tijd', 'Metro', 'Knack', 'Trends', 'Humo', 'Krant van West-Vlaanderen', 'De Zondag', 'tPallieterke']
 
 def main(fps):
     db = database.get_database()
     cur = db.cursor()
 
-    themes = functions.load_themes('db/20140718_dutchdictionary_v2.lcd.txt')
+    themes = functions.load_jsondict(os.path.join(dirname, 'db/themes.json'))
+    sentiment = functions.load_jsondict(os.path.join(dirname, 'db/sentiment.json'))
 
     pol_parties = database.dbitems_from_table(cur, 'pol_parties')
     pol_persons = database.dbitems_from_table(cur, 'pol_persons')
@@ -33,7 +36,7 @@ def main(fps):
             for sentence in sent_tokenize(line['text'], language='dutch'):
                 fragment = database.DBItem('fragments', {
                     'content': sentence,
-                    'sentiment': nlp.detect_polarity(sentence)
+                    'sentiment': nlp.detect_polarity(sentence, sentiment)
                 })
 
                 for pol_party in pol_parties:

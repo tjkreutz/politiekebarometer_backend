@@ -1,14 +1,18 @@
+import os
 import sys
 
 from src import nlp
 from src import database
 from src import functions
 
+dirname = os.path.dirname(__file__)
+
 def main(fps):
     db = database.get_database()
     cur = db.cursor()
 
-    themes = functions.load_themes('db/20140718_dutchdictionary_v2.lcd.txt')
+    themes = functions.load_jsondict(os.path.join(dirname, 'db/themes.json'))
+    sentiment = functions.load_jsondict(os.path.join(dirname, 'db/sentiment.json'))
 
     pol_parties = database.dbitems_from_table(cur, 'pol_parties')
     pol_persons = database.dbitems_from_table(cur, 'pol_persons')
@@ -21,7 +25,7 @@ def main(fps):
             doc = database.DBItem('doc_all', {
                 'ts': functions.timestamp_to_datetime(float(line['timestamp_ms'])/1000),
                 'theme_code': nlp.detect_theme(themes, text),
-                'url': f'https://twitter.com/statuses/{line["id_str"]}',
+                'url': 'https://twitter.com/statuses/{}'.format(line["id_str"]),
             })
             tweet = database.DBItem('doc_tweets', {
                 'tweet_id': line['id_str'],
@@ -30,7 +34,7 @@ def main(fps):
 
             fragment = database.DBItem('fragments', {
                 'content': text,
-                'sentiment': nlp.detect_polarity(text)
+                'sentiment': nlp.detect_polarity(text, sentiment)
             })
 
             for pol_party in pol_parties:

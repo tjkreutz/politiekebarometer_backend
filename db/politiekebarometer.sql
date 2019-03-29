@@ -287,8 +287,6 @@ INSERT INTO pol_persons(id,pol_id,first_name,last_name,full_name,party_id,info,t
 INSERT INTO pol_all VALUES (NULL);
 INSERT INTO pol_persons(id,pol_id,first_name,last_name,full_name,party_id,info,twitter,facebook) VALUES (NULL,LAST_INSERT_ID(),'Bart','De Wever','Bart De Wever',10,'Partijvoorzitter en Burgemeester van Antwerpen','@Bart_DeWever',NULL);
 INSERT INTO pol_all VALUES (NULL);
-INSERT INTO pol_persons(id,pol_id,first_name,last_name,full_name,party_id,info,twitter,facebook) VALUES (NULL,LAST_INSERT_ID(),'Bart','De Wever','Bart De Wever',10,'Lid van de Kamer',NULL,NULL);
-INSERT INTO pol_all VALUES (NULL);
 INSERT INTO pol_persons(id,pol_id,first_name,last_name,full_name,party_id,info,twitter,facebook) VALUES (NULL,LAST_INSERT_ID(),'Bart','Dochy','Bart Dochy',1,'Lid van het Vlaams parlement','@BartDochy','/dochybart');
 INSERT INTO pol_all VALUES (NULL);
 INSERT INTO pol_persons(id,pol_id,first_name,last_name,full_name,party_id,info,twitter,facebook) VALUES (NULL,LAST_INSERT_ID(),'Bart','Nevens','Bart Nevens',10,'Lid van het Vlaams parlement','@BartNevens','/bart.nevens.9');

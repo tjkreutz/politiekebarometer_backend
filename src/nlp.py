@@ -1,4 +1,3 @@
-import json
 from numpy import mean
 from string import punctuation
 from operator import itemgetter
@@ -6,7 +5,6 @@ from collections import defaultdict
 from nltk.tokenize import word_tokenize
 
 CHECK = punctuation + ' '
-SENT_LEXICON = json.load(open('db/sentiment.json'))
 
 def detect_pol_party_in_text(pol_party, text):
     condition = 0
@@ -52,8 +50,8 @@ def detect_theme(themes, text):
     detected_theme = sorted_themes[0] if sorted_themes else None
     return detected_theme
 
-def detect_polarity(text):
+def detect_polarity(text, sentiment):
     tokens = word_tokenize(text, language='dutch')
-    polarities = [SENT_LEXICON[token] for token in tokens if token in SENT_LEXICON]
+    polarities = [sentiment[token] for token in tokens if token in sentiment]
     return mean(polarities) if polarities else 0
 
