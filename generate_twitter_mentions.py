@@ -38,14 +38,14 @@ def main(fps):
             })
 
             for pol_party in pol_parties:
-                if nlp.detect_pol_party_in_news(pol_party, text):
+                if nlp.detect_pol_party_in_tweet(pol_party, text):
                     mention = database.DBItem('mentions', {
                         'pol_id': pol_party.data['pol_id']
                     })
                     insert = (doc, tweet, fragment, mention)
                     database.commit_mention(cur, insert)
             for pol_person in pol_persons:
-                if nlp.detect_pol_person_in_news(pol_person, text):
+                if nlp.detect_pol_person_in_tweet(pol_person, text):
                     mention = database.DBItem('mentions', {
                         'pol_id': pol_person.data['pol_id']
                     })

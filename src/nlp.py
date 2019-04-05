@@ -30,8 +30,6 @@ def detect_pol_party_in_tweet(pol_party, tweet):
     if pol_party.data['twitter']:
         if pol_party.data['twitter'] in tweet:
             return True
-    if pol_party.data['short_name'] in tweet:
-        return detect_pol_party_in_text(pol_party, tweet)
     return False
 
 def detect_pol_person_in_news(pol_person, news):

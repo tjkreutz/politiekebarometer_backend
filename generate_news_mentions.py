@@ -40,6 +40,11 @@ def main(fps):
                 })
 
                 for pol_party in pol_parties:
+                    # temporary fix. todo: Better fix
+                    if pol_party.data['short_name'] == 'CD&V':
+                        pol_party.data['short_name'] = 'CD'
+                    if pol_party.data['short_name'] == 'Vuye&Wouters':
+                        pol_party.data['short_name'] = 'Vuye & Wouters'
                     if nlp.detect_pol_party_in_news(pol_party, sentence):
                         mention = database.DBItem('mentions', {
                             'pol_id': pol_party.data['pol_id']
