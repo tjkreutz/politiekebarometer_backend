@@ -24,7 +24,7 @@ def main(fps):
             if not line['source'] in FLEMISH:
                 continue
             doc = database.DBItem('doc_all', {
-                'ts': functions.timestamp_to_datetime(float(line['published'])),
+                'date': functions.timestamp_to_datetime(float(line['published'])),
                 'theme_code': nlp.detect_theme(themes, line['text']),
                 'url': line['url'],
             })

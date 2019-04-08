@@ -23,7 +23,7 @@ def main(fps):
                 continue
             text = line['extended_tweet']['full_text'] if 'extended_tweet' in line else line['text']
             doc = database.DBItem('doc_all', {
-                'ts': functions.timestamp_to_datetime(float(line['timestamp_ms'])/1000),
+                'date': functions.timestamp_to_datetime(float(line['timestamp_ms'])/1000),
                 'theme_code': nlp.detect_theme(themes, text),
                 'url': 'https://twitter.com/statuses/{}'.format(line["id_str"]),
             })
