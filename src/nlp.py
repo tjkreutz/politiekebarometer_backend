@@ -28,7 +28,7 @@ def detect_pol_party_in_news(pol_party, news):
 
 def detect_pol_party_in_tweet(pol_party, tweet):
     if pol_party.data['twitter']:
-        if pol_party.data['twitter'] in tweet:
+        if pol_party.data['twitter'] in tweet.split():
             return True
     return False
 
@@ -37,7 +37,7 @@ def detect_pol_person_in_news(pol_person, news):
 
 def detect_pol_person_in_tweet(pol_person, tweet):
     if pol_person.data['twitter']:
-        return pol_person.data['full_name'] in tweet or pol_person.data['twitter'] in tweet
+        return pol_person.data['full_name'] in tweet or pol_person.data['twitter'] in tweet.split()
     return pol_person.data['full_name'] in tweet
 
 def detect_theme(themes, text):
