@@ -50,14 +50,14 @@ def main():
         hashtag_counter = count_hashtags(fragments)
         top_hashtags = hashtag_counter.most_common(10)
         for rank, hashtag_tup in enumerate(top_hashtags):
-            keyword, count = hashtag_tup
-            hashtag = database.DBItem('hashtags', {
+            hashtag, count = hashtag_tup
+            dbitem = database.DBItem('hashtags', {
                 'pol_id': pol_party.data['pol_id'],
                 'rank': rank,
-                'keyword': keyword,
+                'hashtag': hashtag,
                 'count': count
             })
-            hashtag.commit(cur)
+            dbitem.commit(cur)
 
     for pol_person in pol_persons:
         fragments = get_person_fragments(pol_person, cur)
