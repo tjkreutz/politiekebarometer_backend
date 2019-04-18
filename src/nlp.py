@@ -2,7 +2,7 @@ from numpy import mean
 from string import punctuation
 from operator import itemgetter
 from collections import defaultdict
-from nltk.tokenize import word_tokenize
+from pattern.nl import sentiment
 
 CHECK = punctuation + ' '
 
@@ -43,13 +43,19 @@ def detect_pol_person_in_tweet(pol_person, tweet):
 def detect_theme(themes, text):
     theme_count = defaultdict(int)
     for theme, queries in themes.items():
-        theme_count[theme] += sum([text.count(query) for query in queries])
+        theme_count[theme] += sum([text.lower().count(query) for query in queries])
     sorted_themes = [t for t, v in sorted(theme_count.items(), key=itemgetter(1), reverse=True) if v>0]
     detected_theme = sorted_themes[0] if sorted_themes else None
     return detected_theme
 
-def detect_polarity(text, sentiment):
-    tokens = word_tokenize(text, language='dutch')
-    polarities = [sentiment[token] for token in tokens if token in sentiment]
-    return mean(polarities) if polarities else 0
+def detect_dossier(dossiers, text):
+    dossier_count = defaultdict(int)
+    for dossier, queries in dossiers.items():
+        dossier_count[dossier] += sum([text.lower().count(query) for query in queries])
+    sorted_themes = [t for t, v in sorted(dossier_count.items(), key=itemgetter(1), reverse=True) if v>0]
+    detected_theme = sorted_themes[0] if sorted_themes else None
+    return detected_theme
+
+def detect_polarity(text):
+    return sentiment(text)[0]
 

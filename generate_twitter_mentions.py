@@ -12,7 +12,7 @@ def main(fps):
     cur = db.cursor()
 
     themes = functions.load_jsondict(os.path.join(dirname, 'db/themes.json'))
-    sentiment = functions.load_jsondict(os.path.join(dirname, 'db/sentiment.json'))
+    dossiers = functions.load_jsondict(os.path.join(dirname, 'db/dossiers.json'))
 
     pol_parties = database.dbitems_from_table(cur, 'pol_parties')
     pol_persons = database.dbitems_from_table(cur, 'pol_persons')
@@ -24,7 +24,8 @@ def main(fps):
             text = line['extended_tweet']['full_text'] if 'extended_tweet' in line else line['text']
             doc = database.DBItem('doc_all', {
                 'date': functions.timestamp_to_datetime(float(line['timestamp_ms'])/1000),
-                'theme_code': nlp.detect_theme(themes, text),
+                'theme_name': nlp.detect_theme(themes, text),
+                'dossier_name': nlp.detect_dossier(dossiers, text),
                 'url': 'https://twitter.com/statuses/{}'.format(line["id_str"]),
             })
             tweet = database.DBItem('doc_tweets', {
@@ -34,7 +35,7 @@ def main(fps):
 
             fragment = database.DBItem('fragments', {
                 'content': text,
-                'sentiment': nlp.detect_polarity(text, sentiment)
+                'sentiment': nlp.detect_polarity(text)
             })
 
             for pol_party in pol_parties:

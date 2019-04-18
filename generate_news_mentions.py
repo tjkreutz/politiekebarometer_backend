@@ -14,7 +14,7 @@ def main(fps):
     cur = db.cursor()
 
     themes = functions.load_jsondict(os.path.join(dirname, 'db/themes.json'))
-    sentiment = functions.load_jsondict(os.path.join(dirname, 'db/sentiment.json'))
+    dossiers = functions.load_jsondict(os.path.join(dirname, 'db/dossiers.json'))
 
     pol_parties = database.dbitems_from_table(cur, 'pol_parties')
     pol_persons = database.dbitems_from_table(cur, 'pol_persons')
@@ -25,7 +25,8 @@ def main(fps):
                 continue
             doc = database.DBItem('doc_all', {
                 'date': functions.timestamp_to_datetime(float(line['published'])),
-                'theme_code': nlp.detect_theme(themes, line['text']),
+                'theme_name': nlp.detect_theme(themes, line['text']),
+                'dossier_name': nlp.detect_dossier(dossiers, line['text']),
                 'url': line['url'],
             })
             news = database.DBItem('doc_news', {
@@ -36,7 +37,7 @@ def main(fps):
             for sentence in sent_tokenize(line['text'], language='dutch'):
                 fragment = database.DBItem('fragments', {
                     'content': sentence,
-                    'sentiment': nlp.detect_polarity(sentence, sentiment)
+                    'sentiment': nlp.detect_polarity(sentence)
                 })
 
                 for pol_party in pol_parties:

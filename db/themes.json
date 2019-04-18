@@ -1,5 +1,5 @@
 {
-  "t1000": [
+  "Mobiliteit": [
     "brussels airlines",
     "vliegmaatschappij",
     "luchtvaart",
@@ -80,7 +80,7 @@
 	"voetgangers",
 	"brussels airport",
 	"fietsostrade"],
-  "t1500": [
+  "Ondernemingen": [
     " banken",
 	"grootbank",
 	"banksector",
@@ -146,7 +146,7 @@
 	"overname",
 	"boekhoud",
 	" toerisme"],
-  "t1800": [
+  "Buitenlandse handel": [
     "betalingsbalans",
 	"handelsbalans",
 	"wisselkoers",
@@ -175,7 +175,7 @@
 	"protectionis",
 	"handelsconflict",
 	"handelsrelatie"],
-  "t1400": [
+  "Huisvesting": [
     "appartement",
 	"gemeenschapsontwikkeling",
 	"huizenbouw",
@@ -227,7 +227,7 @@
 	"stadsvernieuwing",
 	"sociale woning",
 	"sociale huisvesting"],
-  "t300": [
+  "Gezondheid": [
     "abortus",
 	"zwangerschapsonderbreking",
 	"zwangerschapsafbreking",
@@ -469,7 +469,7 @@
 	"tinnitus",
 	"oorsuizen",
 	"zorgsysteem"],
-  "t1200": [
+  "Justitie": [
     "ontvoer",
 	"vrijspreken",
 	"vrijspraak",
@@ -629,7 +629,7 @@
 	"drugsmaffia",
 	"doodrijder",
 	"war on drugs"],
-  "t700": [
+  "Milieu": [
     "zure regen",
 	"koolstof",
 	"klimaatverandering",
@@ -706,7 +706,7 @@
 	"statiegeld",
 	"sluikstort",
 	"afvaldumping"],
-  "t1900": [
+  "Buitenlandse zaken": [
     "mensenrechten",
 	"rechten van de mens",
 	"doodstraf",
@@ -1031,7 +1031,7 @@
 	"europees commissaris",
 	"schengen",
 	"ontwikkelingssamenwerking"],
-  "t600": [
+  "Onderwijs": [
     "leerjaar",
 	"middelbaar",
 	"middelbare",
@@ -1087,7 +1087,7 @@
 	"leerstoornis",
 	"dyslexie",
 	"studieoriënt"],
-  "t1300": [
+  "Sociale zaken": [
     "voedselbank",
 	"met een laag inkomen",
 	" armoede",
@@ -1165,7 +1165,7 @@
 	"kinderarmoede",
 	"voedselbank",
 	"kinderbijslag"],
-  "t100": [
+  "Economie": [
     "totale vraag",
 	"totaal aanbod",
 	"conjunctuur",
@@ -1252,7 +1252,7 @@
 	"investeringsklimaat",
 	"basisinkomen",
 	"eurozone"],
-  "t1600": [
+  "Defensie": [
     "luchtmacht",
 	" leger",
 	"atoombom",
@@ -1298,7 +1298,7 @@
 	"f-35",
 	"bommenwerper",
 	"luchtmacht"],
-  "t2000": [
+  "Werking partijen en overheid": [
     " verkiezings",
 	"de post",
 	" bpost ",
@@ -1413,7 +1413,7 @@
 	"communautair",
 	"confedera",
 	"dotatie"],
-  "t500": [
+  "Arbeid": [
     "pensioen",
 	"gepensioneerd",
 	"pensionering",
@@ -1527,7 +1527,7 @@
 	"flexi job",
 	"personeelstekort",
 	"loopbaan"],
-  "t1700": [
+  "Wetenschap": [
     "computer",
 	"internet",
 	"meteorolo",
@@ -1563,7 +1563,7 @@
 	" ai ",
 	"google",
 	"microsoft"],
-  "t2300": [
+  "Cultuur": [
     "taalrecht",
 	"taalpariteit",
 	"kunst ",
@@ -1610,7 +1610,7 @@
 	" gamer ",
 	"carnaval",
 	"festival"],
-  "t200": [
+  "Burgerrechten": [
     "burgerrecht ",
 	"validisme",
 	"recht op informatie",
@@ -1729,7 +1729,7 @@
 	"holebi",
 	"transgender",
 	"transfobie"],
-  "t800": [
+  "Energie": [
     "biogas",
 	"biomassa",
 	"carpool",
@@ -1797,7 +1797,7 @@
 	"windturbine",
 	"kernuitstap",
 	"fossiele brandstof"],
-  "t2100": [
+  "Ruimtelijke ordening": [
     " dijk ",
 	" dijken ",
 	"overstromingsbeleid",
@@ -1843,7 +1843,7 @@
 	"zandgrond",
 	"boswetgeving",
 	"watermaatschappij"],
-  "t900": [
+  "Migratie": [
     "asiel",
 	"burgerschap",
 	"migrat",
@@ -1883,7 +1883,7 @@
 	"terugkeerbeleid",
 	"hoofddoekenverbod",
 	"maximiliaanpark"],
-  "t29": [
+  "Sport": [
     "olympische spelen",
 	"olympische winterspelen",
 	"olympische zomerspelen",
@@ -1907,7 +1907,7 @@
 	" zwem",
 	" bloso ",
 	" bloso-"],
-  "t400": [
+  "Landbouw": [
     "landbouw",
 	"akkerbouw",
 	"rundvee",
