@@ -10,7 +10,7 @@ dirname = os.path.dirname(__file__)
 FLEMISH = ['De Standaard', 'Het Nieuwsblad', 'Gazet van Antwerpen', 'Het Belang van Limburg', 'De Morgen', 'Het Laatste Nieuws', 'De Tijd', 'Metro', 'Knack', 'Trends', 'Humo', 'Krant van West-Vlaanderen', 'De Zondag', 'tPallieterke']
 
 def main(fps):
-    db = database.get_database()
+    db = database.get_db()
     cur = db.cursor()
 
     themes = functions.load_jsondict(os.path.join(dirname, 'db/themes.json'))

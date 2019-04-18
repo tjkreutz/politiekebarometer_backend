@@ -38,7 +38,7 @@ def count_hashtags(fragments):
     return hashtag_counter
 
 def main():
-    db = database.get_database()
+    db = database.get_db()
     cur = db.cursor()
     cur.execute("DELETE FROM hashtags")
 

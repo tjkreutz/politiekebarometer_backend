@@ -1,22 +1,14 @@
-import os
 from src import config
 import MySQLdb
 
-def get_database():
-    dirname = os.path.dirname(__file__)
+def get_db():
     database = MySQLdb.connect(
         host=config.HOST,
         user=config.USER,
         password=config.PASSWORD,
         db=config.DB,
-        port=config.PORT,
         use_unicode=True,
         charset="utf8",
-        ssl={
-            'ca': os.path.join(dirname, '../db/ca.pem'),
-            'cert': os.path.join(dirname, '../db/client-cert.pem'),
-            'key': os.path.join(dirname, '../db/client-key.pem'),
-        }
     )
     return database
 

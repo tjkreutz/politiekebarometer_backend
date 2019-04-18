@@ -1,6 +1,6 @@
 -- Create all tables
 
-CREATE TABLE `mentions` 
+CREATE TABLE `mentions`
 (
 	`id` int NOT NULL AUTO_INCREMENT,
 	`pol_id` int,
@@ -8,7 +8,7 @@ CREATE TABLE `mentions`
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `fragments` 
+CREATE TABLE `fragments`
 (
 	`id` int NOT NULL AUTO_INCREMENT,
 	`doc_id` int,
@@ -17,13 +17,13 @@ CREATE TABLE `fragments`
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `pol_all` 
+CREATE TABLE `pol_all`
 (
 	`id` int NOT NULL AUTO_INCREMENT,
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `pol_parties` 
+CREATE TABLE `pol_parties`
 (
 	`id` int NOT NULL AUTO_INCREMENT,
 	`pol_id` int,
@@ -36,7 +36,7 @@ CREATE TABLE `pol_parties`
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `pol_persons` 
+CREATE TABLE `pol_persons`
 (
 	`id` int NOT NULL AUTO_INCREMENT,
 	`pol_id` int,
@@ -50,7 +50,7 @@ CREATE TABLE `pol_persons`
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `doc_all` 
+CREATE TABLE `doc_all`
 (
 	`id` int NOT NULL AUTO_INCREMENT,
 	`date` datetime,
@@ -60,7 +60,7 @@ CREATE TABLE `doc_all`
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `doc_tweets` 
+CREATE TABLE `doc_tweets`
 (
 	`tweet_id` varchar(50),
 	`doc_id` int,
@@ -68,7 +68,7 @@ CREATE TABLE `doc_tweets`
 	PRIMARY KEY (`tweet_id`)
 );
 
-CREATE TABLE `doc_news` 
+CREATE TABLE `doc_news`
 (
 	`news_id` varchar(50),
 	`doc_id` int,
@@ -76,7 +76,7 @@ CREATE TABLE `doc_news`
 	PRIMARY KEY (`news_id`)
 );
 
-CREATE TABLE `themes` 
+CREATE TABLE `themes`
 (
 	`name` varchar(50),
 	`info` varchar(500),
@@ -90,6 +90,14 @@ CREATE TABLE `dossiers`
 	PRIMARY KEY (`name`)
 );
 
+CREATE TABLE `hashtags`
+(
+	`pol_id` int,
+	`rank` int,
+	`hashtag` varchar(50),
+  `count` int,
+	PRIMARY KEY (`pol_id`, `rank`)
+);
 -- Create references between tables
 
 ALTER TABLE `mentions` ADD FOREIGN KEY (`pol_id`) REFERENCES `pol_all` (`id`);
@@ -111,6 +119,8 @@ ALTER TABLE `doc_all` ADD FOREIGN KEY (`dossier_name`) REFERENCES `dossiers` (`n
 ALTER TABLE `doc_tweets` ADD FOREIGN KEY (`doc_id`) REFERENCES `doc_all` (`id`) ON DELETE CASCADE;
 
 ALTER TABLE `doc_news` ADD FOREIGN KEY (`doc_id`) REFERENCES `doc_all` (`id`) ON DELETE CASCADE;
+
+ALTER TABLE `hashtags` ADD FOREIGN KEY (`pol_id`) REFERENCES `pol_all` (`id`);
 
 -- Populate the themes table
 

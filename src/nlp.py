@@ -52,9 +52,9 @@ def detect_dossier(dossiers, text):
     dossier_count = defaultdict(int)
     for dossier, queries in dossiers.items():
         dossier_count[dossier] += sum([text.lower().count(query) for query in queries])
-    sorted_themes = [t for t, v in sorted(dossier_count.items(), key=itemgetter(1), reverse=True) if v>0]
-    detected_theme = sorted_themes[0] if sorted_themes else None
-    return detected_theme
+    sorted_dossiers = [t for t, v in sorted(dossier_count.items(), key=itemgetter(1), reverse=True) if v>0]
+    detected_dossier = sorted_dossiers[0] if sorted_dossiers else None
+    return detected_dossier
 
 def detect_polarity(text):
     return sentiment(text)[0]

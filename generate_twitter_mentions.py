@@ -8,7 +8,7 @@ from src import functions
 dirname = os.path.dirname(__file__)
 
 def main(fps):
-    db = database.get_database()
+    db = database.get_db()
     cur = db.cursor()
 
     themes = functions.load_jsondict(os.path.join(dirname, 'db/themes.json'))
