@@ -3,8 +3,8 @@
     "brexit"
   ],
   "Marrakesh-pact": [
-    "marrakesh-pact",
-    "vn-migratiepact"
+    "marrakesh",
+    "migratiepact"
   ],
   "Klimaatprotest": [
     "klimaatprotest",
@@ -17,5 +17,8 @@
   ],
   "Kilometerheffing": [
     "kilometerheffing"
+  ],
+  "Pensioenen": [
+    "pensioen"
   ]
 }
