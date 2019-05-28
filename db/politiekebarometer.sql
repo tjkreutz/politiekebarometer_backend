@@ -151,6 +151,7 @@ INSERT INTO themes(name, info) VALUES
 -- Populate the dossiers table
 
 INSERT INTO dossiers(name, info) VALUES
+("Pensioenen", ""),
 ("Brexit",""),
 ("Marrakesh-pact",""),
 ("Klimaatprotest",""),
