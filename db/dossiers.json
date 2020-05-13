@@ -20,5 +20,9 @@
   ],
   "Pensioenen": [
     "pensioen"
+  ],
+  "Coronavirus": [
+    "corona",
+    "covid"
   ]
 }
