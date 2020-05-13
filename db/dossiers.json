@@ -20,5 +20,12 @@
   ],
   "Pensioenen": [
     "pensioen"
+<<<<<<< Updated upstream
+=======
+  ],
+  "Coronavirus": [
+    "corona",
+    "covid"
+>>>>>>> Stashed changes
   ]
 }
