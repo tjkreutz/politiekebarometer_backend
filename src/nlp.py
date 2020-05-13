@@ -2,7 +2,7 @@ from numpy import mean
 from string import punctuation
 from operator import itemgetter
 from collections import defaultdict
-from pattern.nl import sentiment
+from nltk.tokenize import word_tokenize
 
 CHECK = punctuation + ' '
 
@@ -56,6 +56,8 @@ def detect_dossier(dossiers, text):
     detected_dossier = sorted_dossiers[0] if sorted_dossiers else None
     return detected_dossier
 
-def detect_polarity(text):
-    return sentiment(text)[0]
+def detect_polarity(text, sentiment):
+    tokens = word_tokenize(text, language='dutch')
+    polarities = [sentiment[token] for token in tokens if token in sentiment]
+    return mean(polarities) if polarities else 0
 

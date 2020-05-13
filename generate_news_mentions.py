@@ -1,5 +1,6 @@
 import os
 import sys
+import json
 from nltk.tokenize import sent_tokenize
 
 from src import nlp
@@ -7,6 +8,7 @@ from src import database
 from src import functions
 
 dirname = os.path.dirname(__file__)
+sentiment = json.load(open("data/polisent.json"))
 FLEMISH = ['De Standaard', 'Het Nieuwsblad', 'Gazet van Antwerpen', 'Het Belang van Limburg', 'De Morgen', 'Het Laatste Nieuws', 'De Tijd', 'Metro', 'Knack', 'Trends', 'Humo', 'Krant van West-Vlaanderen', 'De Zondag', 'tPallieterke']
 
 def main(fps):
@@ -37,7 +39,7 @@ def main(fps):
             for sentence in sent_tokenize(line['text'], language='dutch'):
                 fragment = database.DBItem('fragments', {
                     'content': sentence,
-                    'sentiment': nlp.detect_polarity(sentence)
+                    'sentiment': nlp.detect_polarity(sentence, sentiment)
                 })
 
                 for pol_party in pol_parties:

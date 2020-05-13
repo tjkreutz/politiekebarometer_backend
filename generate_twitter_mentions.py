@@ -35,7 +35,7 @@ def main(fps):
 
             fragment = database.DBItem('fragments', {
                 'content': text,
-                'sentiment': nlp.detect_polarity(text)
+                'sentiment': nlp.detect_polarity(text, sentiment)
             })
 
             for pol_party in pol_parties:
