@@ -1,11 +1,13 @@
 import os
 import sys
+import json
 
 from src import nlp
 from src import database
 from src import functions
 
 dirname = os.path.dirname(__file__)
+sentiment = json.load(open("data/polisent.json"))
 
 def main(fps):
     db = database.get_db()
@@ -44,16 +46,15 @@ def main(fps):
                         'pol_id': pol_party.data['pol_id']
                     })
                     insert = (doc, tweet, fragment, mention)
-                    database.commit_mention(cur, insert)
+                    database.commit_mention(cur, db, insert)
             for pol_person in pol_persons:
                 if nlp.detect_pol_person_in_tweet(pol_person, text):
                     mention = database.DBItem('mentions', {
                         'pol_id': pol_person.data['pol_id']
                     })
                     insert = (doc, tweet, fragment, mention)
-                    database.commit_mention(cur, insert)
+                    database.commit_mention(cur, db, insert)
 
-    db.commit()
     cur.close()
     db.close()
 

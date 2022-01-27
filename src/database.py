@@ -1,16 +1,18 @@
 from src import config
-import MySQLdb
+import psycopg2
+from urllib.parse import urlparse
 
 def get_db():
-    database = MySQLdb.connect(
-        host=config.HOST,
-        user=config.USER,
-        password=config.PASSWORD,
-        db=config.DB,
-        use_unicode=True,
-        charset="utf8",
+    database_parse = urlparse(config.DB)
+    conn = psycopg2.connect(
+        host=database_parse.hostname,
+        user=database_parse.username,
+        password=database_parse.password,
+        database=database_parse.path[1:],
+        port=database_parse.port
     )
-    return database
+
+    return conn
 
 def dbitems_from_table(cur, table):
     dbitems = []
@@ -27,13 +29,13 @@ class DBItem:
         self.table = table
         self.data = data
 
-    def commit(self, cur):
+    def commit(self, cur, database):
         sql = self.generate_sql()
         try:
-            cur.execute(sql, self.data.values())
-            self.data['id'] = cur.lastrowid
-        except MySQLdb.Error:
-            return
+            cur.execute(sql, list(self.data.values()))
+            self.data['id'] = cur.fetchone()[0]
+        except psycopg2.Error:
+            database.rollback()
 
     def is_committed(self):
         return 'id' in self.data
@@ -42,20 +44,21 @@ class DBItem:
         columns = self.data.keys()
         column_string = ",".join(columns)
         placeholder_string = ",".join(["%s"]*len(columns))
-        return "INSERT INTO {} ({}) VALUES ({});".format(self.table, column_string, placeholder_string)
+        return "INSERT INTO {} ({}) VALUES ({}) RETURNING *;".format(self.table, column_string, placeholder_string)
 
-def commit_mention(cur, insert):
+def commit_mention(cur, database, insert):
     doc, subdoc, fragment, mention = insert
 
     if not doc.is_committed():
-        doc.commit(cur)
+        doc.commit(cur, database)
     if doc.is_committed() and not subdoc.is_committed():
         subdoc.data['doc_id'] = doc.data['id']
-        subdoc.commit(cur)
+        subdoc.commit(cur, database)
     if doc.is_committed() and not fragment.is_committed():
         fragment.data['doc_id'] = doc.data['id']
-        fragment.commit(cur)
+        fragment.commit(cur, database)
     if fragment.is_committed() and not mention.is_committed():
         mention.data['fragment_id'] = fragment.data['id']
-        mention.commit(cur)
+        mention.commit(cur, database)
+    database.commit()
 

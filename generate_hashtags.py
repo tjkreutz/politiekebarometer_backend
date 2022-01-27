@@ -3,7 +3,7 @@ from collections import Counter
 
 
 def get_fragments(pol_id, cur):
-    sql = "SELECT fragments.content FROM mentions JOIN fragments ON mentions.fragment_id = fragments.id JOIN doc_all ON fragments.doc_id = doc_all.id WHERE mentions.pol_id={} AND doc_all.date BETWEEN (NOW() - INTERVAL 14 DAY) AND NOW();".format(str(pol_id))
+    sql = "SELECT fragments.content FROM mentions JOIN fragments ON mentions.fragment_id = fragments.id JOIN doc_all ON fragments.doc_id = doc_all.id WHERE mentions.pol_id={} AND doc_all.date BETWEEN (NOW() - INTERVAL '14 DAY') AND NOW();".format(str(pol_id))
     cur.execute(sql)
     fragments = [result[0] for result in cur.fetchall()]
     return fragments
@@ -57,7 +57,7 @@ def main():
                 'hashtag': hashtag,
                 'count': count
             })
-            dbitem.commit(cur)
+            dbitem.commit(cur, db)
 
     for pol_person in pol_persons:
         fragments = get_person_fragments(pol_person, cur)
@@ -71,9 +71,8 @@ def main():
                 'hashtag': hashtag,
                 'count': count
             })
-            dbitem.commit(cur)
+            dbitem.commit(cur, db)
 
-    db.commit()
     cur.close()
     db.close()
 

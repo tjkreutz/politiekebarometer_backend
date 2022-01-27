@@ -53,16 +53,15 @@ def main(fps):
                             'pol_id': pol_party.data['pol_id']
                         })
                         insert = (doc, news, fragment, mention)
-                        database.commit_mention(cur, insert)
+                        database.commit_mention(cur, db, insert)
                 for pol_person in pol_persons:
                     if nlp.detect_pol_person_in_news(pol_person, sentence):
                         mention = database.DBItem('mentions', {
                             'pol_id': pol_person.data['pol_id']
                         })
                         insert = (doc, news, fragment, mention)
-                        database.commit_mention(cur, insert)
+                        database.commit_mention(cur, db, insert)
 
-    db.commit()
     cur.close()
     db.close()
 
